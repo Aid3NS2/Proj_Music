@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="script.ts" defer></script>
+</head>
+
+<body>
+
+    <header>
+
+        <div></div>
+        <h1 id="title">RPlayG</h1>
+        <div>
+            <p class="username">...</p>
+            <a href="#">Sair</a>
+        </div>
+
+    </header>
+
+    <div id="evhelp">
+        
+        <aside class="play">
+        
+            <!-- vai ter coisa carregando aqui dawg -->
+        
+        </aside>
+
+        <main>
+
+            <p>wep</p>
+
+        </main>
+
+        <aside class="info">
+
+            <p>Wii</p>
+
+        </aside>
+
+    </div>
+
+    <script>
+
+        async function init() {
+            const response = await fetch("/login/user")
+            if (!response.ok) {
+                alert("Usuário não logado")
+                window.location.href = "/"
+                return
+            }
+            const data = await response.json()
+            document.querySelector(".username").textContent = data.username
+            // document.querySelector("main").innerHTML = ``
+        }
+        init()
+
+    </script>
+
+</body>
+
+</html>

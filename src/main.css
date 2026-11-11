@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: rgb(225, 152, 152);
+    --violet: rgb(162, 103, 138);
+    --purple: rgb(77, 60, 119);
+    --mauve: rgb(63, 29, 56);
+}
+
+body {
+    height: 100dvh;
+    max-height: 100dvh;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+
+    width: 100%;
+    text-align: center;
+    background-color: var(--mauve);
+}
+
+aside {
+    width: 20%;
+    background-color: var(--pink);
+}
+
+main {
+    flex-grow: 1;
+    background-color: var(--purple);
+}
+
+#evhelp {
+    display: flex;
+    height: 100%;
+}
+
+#title {
+    margin: auto;
+}
