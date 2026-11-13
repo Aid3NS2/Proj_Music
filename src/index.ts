@@ -1,11 +1,13 @@
 import login from "./index.html"
 import home from "./home.html"
 import db from "./db"
+import { join } from "node:path"
 
 const loggedUsers: any = {}
 
 const srv = Bun.serve({
     port: 3000,
+
     routes: {
         "/": login,
 
@@ -65,7 +67,15 @@ const srv = Bun.serve({
                 return Response.json({ msg: "Usuário não logado" }, { status: 401 })
             return Response.json(data)
         },
+    },
+
+    fetch({ url }) {
+        const { pathname } = new URL(url)
+        const filePath = join(`./assets`, pathname)
+        const file = Bun.file(filePath)
+        return new Response(file);
     }
+
 })
 
 console.log(`Server running on ${srv.url}`)

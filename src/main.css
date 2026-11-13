@@ -12,6 +12,7 @@
 }
 
 body {
+    color: white;
     height: 100dvh;
     max-height: 100dvh;
 }
@@ -35,6 +36,46 @@ aside {
 main {
     flex-grow: 1;
     background-color: var(--purple);
+    display: flex;
+    flex-direction: column;
+}
+
+main, aside {
+    padding: 1em;
+}
+
+.capas {
+    height: 2em;
+}
+
+.playlist, .songcard {
+    cursor: pointer;
+}
+
+.songcard {
+    display: flex;
+    gap: 1em;
+    
+}
+
+.songcard p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.info {
+    width: 35%;
+}
+
+#maincont {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#buttons {
+    height: 3em;
 }
 
 #evhelp {
