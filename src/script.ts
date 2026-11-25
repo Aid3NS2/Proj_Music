@@ -6,7 +6,7 @@ class Playlist {
     nome: string;
     musicas: Musica[];
 
-    constructor (nome: string, musicas: Musica[]) {
+    constructor(nome: string, musicas: Musica[]) {
         this.nome = nome
         this.musicas = musicas
     }
@@ -19,7 +19,7 @@ class Musica {
     musica: string;
     info: string;
 
-    constructor (nome: string, autor: string, capa: string, musica = "", info = "placeholder") {
+    constructor(nome: string, autor: string, capa: string, musica = "", info = "placeholder") {
         this.nome = nome
         this.autor = autor
         this.capa = capa
@@ -30,9 +30,9 @@ class Musica {
 
 const playlists: Playlist[] = [
     new Playlist("Élkimo", [
-        new Musica("Miss Murder", "AFI", "missmurder", "Missmurder", 
+        new Musica("Miss Murder", "AFI", "missmurder", "Missmurder",
             "O refrão de Miss Murder, 'Can I make beauty stay if I take my life?' decreve o jeito que a LaVeau pensa. Além de já possuir idealizações suicídas, ela gostaria de manter tudo do jeito mais bonito e agradável, as vezes rejeitando o que a deixa desconfortável para não ter que lidar com a verdade. O resto do tema da música, que fala da perspectiva de possíveis fãs, combina bastante com a história dela, uma vez que ela foge da sua família e castelo para ter uma vida diferente."),
-        new Musica("HUMANS", "GEN KLOUD",  "humans", "Humans",
+        new Musica("HUMANS", "GEN KLOUD", "humans", "Humans",
             "HUMANS me lembra a Azéleis LaVeau por causa da culpa aos humanos na música inteira. Azéleis é uma híbrida, e sofre discriminação na maioria dos lugares onde o RPG se passa por conta disso. Conforme o tempo, ela passou a odiar a humanidade por não conseguir aceitar uma espécie que ela mesma criou."
         ),
         new Musica("Counting Sheep", "SAFIA", "countingsheep", "Countingsheep",
@@ -87,7 +87,7 @@ playlists.forEach(list => {
     asidePlay.appendChild(div)
 })
 
-function mostrarMusic (musicas: Musica[]) {
+function mostrarMusic(musicas: Musica[]) {
     const main = document.querySelector("#maincont") as HTMLElement
     main.innerHTML = ""
     musicas.forEach(musica => {
@@ -99,8 +99,8 @@ function mostrarMusic (musicas: Musica[]) {
         capa.src = `/capas/${musica.capa}.png`
         capa.classList.add("capas")
 
-        artist.innerText ="— " + musica.autor
-        song.innerText= musica.nome
+        artist.innerText = "— " + musica.autor
+        song.innerText = musica.nome
         card.appendChild(capa)
         card.appendChild(song)
         card.appendChild(artist)
@@ -115,7 +115,7 @@ function mostrarMusic (musicas: Musica[]) {
     })
 }
 
-function playMusic (musica: Musica) {
+function playMusic(musica: Musica) {
     if (audio) {
         audio.pause()
         audio.remove()
@@ -144,7 +144,7 @@ function previousTrack() {
     playMusic(before as Musica)
 }
 
-function showInfo (info: string) {
+function showInfo(info: string) {
     (document.querySelector(".info") as HTMLDivElement).textContent = info
 }
 
