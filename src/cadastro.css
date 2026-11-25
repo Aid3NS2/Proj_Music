@@ -1,0 +1,48 @@
+body {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-bottom: 0.5em;
+}
+
+input, button {
+    padding: 1em;
+    font-family: blur;
+}
+
+input {
+    background-color: var(--accent-text);
+}
+
+input:focus {
+    outline-color: var(--accent);
+}
+
+input::placeholder {
+    color: var(--fundo);
+    opacity: 0.5;
+}
+
+.opcoes {
+    background-color: var(--fundo);
+    height: fit-content;
+    padding: 3em;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+}
+
+.oquefornecessarioprafuncionarolayout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+    flex-grow: 1;
+}

@@ -5,16 +5,40 @@
 }
 
 :root {
-    --pink: rgb(225, 152, 152);
-    --violet: rgb(162, 103, 138);
-    --purple: rgb(77, 60, 119);
-    --mauve: rgb(63, 29, 56);
+    --fundo: #242131; 
+    --border: #131020;
+    --text:  #FFF5F8;
+    --accent: #EA2264;
+    --selection: #6E1A37;
+    --accent-text: #76D2DB;
+}
+
+@font-face {
+    font-family: PunkTypewriter;
+    src: url(PunkTypewriter.otf);
+}
+
+@font-face {
+    font-family: Blur;
+    src: url(Blur.ttf);
 }
 
 body {
-    color: white;
+    font-family: Blur;
+    color: var(--text);
     height: 100dvh;
     max-height: 100dvh;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent);
+    text-align: justify;
+}
+
+header h1 {
+    font-family: PunkTypewriter;
+    font-weight: 100;
+    font-size: 3rem;
 }
 
 header {
@@ -25,31 +49,74 @@ header {
 
     width: 100%;
     text-align: center;
-    background-color: var(--mauve);
+    background-color: var(--accent);
+}
+
+a {
+    color: var(--accent-text);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 aside {
     width: 20%;
-    background-color: var(--pink);
+    background-color: var(--fundo);
 }
 
 main {
     flex-grow: 1;
-    background-color: var(--purple);
+    background-color: var(--fundo);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-main, aside {
+
+main, aside, .opcoes {
     padding: 1em;
+    margin: 0.2em;
+    border-radius: 10px;
+    border: medium solid var(--border);
+}
+
+button {
+    padding: 0.1em 0.4em;
+    border: thin solid var(--border);
+    background-color: var(--selection);
+    color: var(--accent-text);
+    transition: 0.2s;
+    font-family: Blur;
+}
+
+button:hover {
+    background-color: var(--accent);
+}
+
+::selection {
+    background-color: var(--selection);
+    color: var(--accent-text);
 }
 
 .capas {
     height: 2em;
 }
 
+.play {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em
+}
+
 .playlist, .songcard {
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.playlist:hover, .songcard:hover {
+    color: var(--accent-text);
 }
 
 .songcard {
@@ -65,24 +132,26 @@ main, aside {
 
 .info {
     width: 35%;
+    padding: 1.5em 2em;
 }
 
 #maincont {
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
     gap: 1em;
 }
 
-#buttons {
-    height: 3em;
-}
-
 #evhelp {
     display: flex;
-    height: 100%;
+    flex-grow: 1;
 }
 
 #title {
     margin: auto;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
 }

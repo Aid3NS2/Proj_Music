@@ -1,4 +1,6 @@
 let audio: HTMLAudioElement | undefined;
+let songlist: Musica[] = [];
+let playing: Musica | undefined;
 
 class Playlist {
     nome: string;
@@ -40,7 +42,7 @@ const playlists: Playlist[] = [
             "The Wolf não teve muita coisa que combina com ela, eu só consigo imaginar ela toda vez que essa música toca então fica por isso,"
         ),
         new Musica("Me and Mr. Wolf", "The Real Tuesday Weld", "meandmrwolf", "Meandmrwolf",
-            "Me and Mister Wolf é muito a Azéleis.... Principalmente se você considerar que ela é a cantora femenina (a Chapeuzinho Vermelho, com eu gosto de pensar). Ela possui um medo da vulnerabilidade e do desejo, já que ela foi criada com lições com o objetivo em volta de não ter essas coisas. Ainda assim, ela quer compartilhar isso com alguém, mas tem medo de destruir a outra pessoa sem querer (you know too much so now I have to kill you vibes)."
+            "Me and Mister Wolf é muito a Azéleis.... Principalmente se você considerar que ela é a cantora feminina (a Chapeuzinho Vermelho, com eu gosto de pensar). Ela possui um medo da vulnerabilidade e do desejo, já que ela foi criada com lições com o objetivo em volta de não ter essas coisas. Ainda assim, ela quer compartilhar isso com alguém, mas tem medo de destruir a outra pessoa sem querer (you know too much so now I have to kill you vibes)."
         ),
         new Musica("GOLD TEEF", "The Skinner Brothers", "goldteef", "Goldteef",
             "Não pensei em como relaciona com ela. O refrão apenas combina. Aceite."
@@ -97,7 +99,7 @@ function mostrarMusic (musicas: Musica[]) {
         capa.src = `/capas/${musica.capa}.png`
         capa.classList.add("capas")
 
-        artist.innerText = musica.autor
+        artist.innerText ="— " + musica.autor
         song.innerText= musica.nome
         card.appendChild(capa)
         card.appendChild(song)
@@ -105,8 +107,10 @@ function mostrarMusic (musicas: Musica[]) {
         main.appendChild(card)
 
         card.addEventListener('click', () => {
+            songlist = musicas
             playMusic(musica)
         })
+
 
     })
 }
@@ -118,8 +122,26 @@ function playMusic (musica: Musica) {
         audio.src = ""
     }
     audio = new Audio(`/musicas/${musica.musica}.mp3`)
+    audio.addEventListener('ended', () => {
+        nextTrack()
+    })
     audio.play()
+    playing = musica
     showInfo(musica.info)
+}
+
+function nextTrack() {
+    let nextIndex = songlist.findIndex(m => m == playing) + 1
+    if (songlist.length - 1 < nextIndex) nextIndex = 0
+    const next = songlist[nextIndex]
+    playMusic(next as Musica)
+}
+
+function previousTrack() {
+    let beforeIndex = songlist.findIndex(m => m == playing) - 1
+    if (beforeIndex < 0) return
+    const before = songlist[beforeIndex]
+    playMusic(before as Musica)
 }
 
 function showInfo (info: string) {
@@ -127,3 +149,5 @@ function showInfo (info: string) {
 }
 
 document.querySelector("#pausebtn")?.addEventListener('click', () => audio?.paused ? audio.play() : audio?.pause())
+document.querySelector("#next")?.addEventListener('click', () => nextTrack())
+document.querySelector("#ante")?.addEventListener('click', () => previousTrack())

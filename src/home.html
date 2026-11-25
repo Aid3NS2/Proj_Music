@@ -16,7 +16,7 @@
         <h1 id="title">RPlayG</h1>
         <div>
             <p class="username">...</p>
-            <a href="#">Sair</a>
+            <a href="#" id="logout" onclick="out()">Sair</a>
         </div>
 
     </header>
@@ -32,18 +32,20 @@
         <main>
 
             <div id="maincont">
-                <p>wep</p>
+                <p>Clique em uma playlist!</p>
             </div>
 
             <div id="buttons">
+                <button id="ante">Before</button>
                 <button id="pausebtn">Pause/Play</button>
+                <button id="next">Next</button>
             </div>
             
         </main>
 
         <aside class="info">
 
-            <p>Wii</p>
+            <p>Quer saber por que a música está na playlist? Coloque ela pra tocar!</p>
 
         </aside>
 
@@ -60,9 +62,13 @@
             }
             const data = await response.json()
             document.querySelector(".username").textContent = data.username
-            // document.querySelector("main").innerHTML = ``
         }
         init()
+
+        function out() {
+            window.cookieStore.delete("ses")
+            window.location.href = "/"
+        }
 
     </script>
 
